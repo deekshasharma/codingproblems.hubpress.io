@@ -12,24 +12,119 @@ the contiguous subarray [4,−1,2,1] has the largest sum = 6.
 
 My Approach
 ------------
-1) If all integers are negative, then return the greatest number from the array.
+1)If all integers are negative, then return the greatest number from the array.
 
-2) If all integers are positive, then return the sum of all integers in the array.
+2)If all integers are positive, then return the sum of all integers in the array.
 
 3)If integers are positive and negative both then: 
-Initialize variables : maximum_till_now(keeps track of the maximum sum at any point) and 
+Initialize variables : maximumSum(keeps track of the maximum sum so far) and currentSum(keeps adding every element in the array) = 0.
 
+4)While going through each Integer in the array if currentSum <= 0, then set the value of currentSum = 0 and check if maximumSum < currentSum, then maximumSum = currentSum.
 
+5)maximumSum will be the largest sum.
+
+ 
 Runtime Complexity
 -------------------
 
-
+Worst case runtime complexity is O(n) since maximum sum is found by going through the array in 1 pass.
 
 Submitted code
 --------------
 
 [source, java]
 ---------------
+
+public class Solution 
+{
+    public int maxSubArray(int[] A) 
+    {
+        if(allNegative(A))
+        {
+            return getMaxAllNegative(A);
+        }
+        
+        if(allPositive(A))
+        {
+            return getMaxAllPositive(A);
+        }
+        
+        int currentSum = 0;
+        int maximumSum = 0;
+        for(int i = 0; i < A.length; i++)
+        {
+            currentSum = currentSum+A[i];
+            if(currentSum < 0)
+            {
+                currentSum = 0;
+            }
+            if(maximumSum < currentSum)
+            {
+                maximumSum = currentSum;
+            }
+        }
+        return maximumSum;
+    }
+    
+    /*
+    Returns true if array contains all negative numbers
+    */
+    private boolean allNegative(int[] A)
+    {
+        for(int i = 0; i < A.length; i++)
+        {
+            if(A[i] >= 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /*
+    Returns the greatest of all negative integers
+    */
+    private int getMaxAllNegative(int[] A)
+    {
+        int max = A[0];
+        for(int i: A)
+        {
+            if(i > max)
+            {
+                max = i;
+            }
+        }
+        return max;
+    }
+        
+    /*
+    Returns true if array contains all positive numbers
+    */
+    private boolean allPositive(int[] A)
+    {
+        for(int i = 0; i < A.length; i++)
+        {
+            if(A[i] < 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /*
+    Returns the sum of all integers in teh array as the max sum subarray
+    */
+    private int getMaxAllPositive(int[] A)
+    {
+        int sum = 0;
+        for(int i: A)
+        {
+            sum += i;
+        }
+        return sum;
+    }   
+}
 
 
 
