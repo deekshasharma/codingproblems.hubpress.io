@@ -1,0 +1,64 @@
+
+= Two Sum
+:hp-tags: LeetCode
+:hardbreaks:
+
+Problem Statement
+-----------------
+Given an array of integers, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+
+Approach
+---------
+1)Keep a hash map containing keys = integers in the array and values = index of that integer in the array. We may use a Hash Set instead of Map in case the expected output of the problem is 
+
+2)Go through the array in 1 pass calculate the remaining from the target (remaining = target - current element of the array) and find the index of the remaining integer from the map if it exists. 
+
+3)Make sure the remaining integer found in the Map is not the current element. For example if target is 6 and the current array element = 3, then remaining = 3 and the map already contains 3. Hence, index of remaining element is checked with index of the current element in the array each time.
+
+Runtime Complexity
+------------------
+Look up in the hash map is O(1). 
+Going through each element in the array is O(n).
+Hence complexity is O(n)
+
+Submitted code
+--------------
+
+[source, java]
+---------------
+public class Solution{
+
+public int[] twoSum(int[] numbers, int target)
+{
+	int[] result = new int[2];
+	if(numbers.length < 2)
+	{
+		return result;
+	}
+	Map<Integer, Integer> map = new HashMap<Integer,Integer>();
+	for(int i = 0; i < numbers.length; i++)
+	{
+		map.put(numbers[i],i+1);
+	}
+	for(int j = 0; j < numbers.length; j++)
+	{
+		int remain = target - numbers[j];
+		if(map.containsKey(remain))
+		{
+			if(map.get(remain) > j+1)
+			{
+				result[0] = j+1;
+				result[1] = map.get(remain);
+			}
+		}
+	}
+	return result;
+}
+}
