@@ -1,5 +1,5 @@
 = Maximum Subarray
-:hp-tags: LeetCode
+:hp-tags: LeetCode, Algorithms, DataStructures
 :hardbreaks:
 
 Problem Statement
@@ -16,7 +16,8 @@ My Approach
 
 2) If all integers are positive, then return the sum of all integers in the array.
 
-3)Initialize variables maximum_till_now(keeps track of the maximum sum at any point) and 
+3)If integers are positive and negative both then: 
+Initialize variables : maximum_till_now(keeps track of the maximum sum at any point) and 
 
 
 Runtime Complexity
