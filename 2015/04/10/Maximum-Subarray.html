@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Maximum Subarray</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="//deekshasharma.github.io/themes/Casper/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//deekshasharma.github.io/themes/Casper/assets/css/screen.css?v=1.0.0" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html" />
+    
+    <meta property="og:site_name" content="Code and only Code!!" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Maximum Subarray" />
+    <meta property="og:description" content="Problem Statement Find the contiguous subarray within an array (containing at least one number) which has the largest sum. For example, given the array [−2,1,−3,4,−1,2,1,−5,4], the contiguous subarray [4,−1,2,1]..." />
+    <meta property="og:url" content="https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html" />
+    <meta property="article:published_time" content="2015-04-10T07:00:00.000Z" />
+    <meta property="article:modified_time" content="2015-04-11T04:19:56.994Z" />
+    <meta property="article:tag" content="LeetCode" />
+    <meta property="article:tag" content="Algorithms" />
+    <meta property="article:tag" content="DataStructures" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Maximum Subarray" />
+    <meta name="twitter:description" content="Problem Statement Find the contiguous subarray within an array (containing at least one number) which has the largest sum. For example, given the array [−2,1,−3,4,−1,2,1,−5,4], the contiguous subarray [4,−1,2,1]..." />
+    <meta name="twitter:url" content="https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Code and only Code!!",
+    "author": {
+        "@type": "Person",
+        "image": "https://avatars.githubusercontent.com/u/3117604?v=3",
+        "url": "undefined/author/undefined"
+    },
+    "headline": "Maximum Subarray",
+    "url": "https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html",
+    "datePublished": "2015-04-10T07:00:00.000Z",
+    "dateModified": "2015-04-11T04:19:56.994Z",
+    "keywords": "LeetCode,  Algorithms,  DataStructures",
+    "description": "Problem Statement Find the contiguous subarray within an array (containing at least one number) which has the largest sum. For example, given the array [−2,1,−3,4,−1,2,1,−5,4], the contiguous subarray [4,−1,2,1]..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost ?" />
+    <link rel="alternate" type="application/rss+xml" title="Code and only Code!!" href="https://deekshasharma.github.io/rss" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+</head>
+<body class="post-template tag-LeetCode tag-Algorithms tag-DataStructures">
+
+    
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="https://deekshasharma.github.io">Home</a>
+        <!-- <a class="subscribe-button icon-feed" href="https://deekshasharma.github.io/rss/">Subscribe</a> -->
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-LeetCode tag-Algorithms tag-DataStructures">
+
+        <header class="post-header">
+            <h1 class="post-title">Maximum Subarray</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-04-10">10 April 2015</time>  on <a href="https://deekshasharma.github.io/tag/LeetCode">LeetCode</a>, <a href="https://deekshasharma.github.io/tag/Algorithms"> Algorithms</a>, <a href="https://deekshasharma.github.io/tag/DataStructures"> DataStructures</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="sect1">
+<h2 id="_problem_statement">Problem Statement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+</div>
+<div class="paragraph">
+<p>For example, given the array [−2,1,−3,4,−1,2,1,−5,4],<br>
+the contiguous subarray [4,−1,2,1] has the largest sum = 6.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_my_approach">My Approach</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>1)If all integers are negative, then return the greatest number from the array.</p>
+</div>
+<div class="paragraph">
+<p>2)If all integers are positive, then return the sum of all integers in the array.</p>
+</div>
+<div class="paragraph">
+<p>3)If integers are positive and negative both then:<br>
+Initialize variables : maximumSum(keeps track of the maximum sum so far) and currentSum(keeps adding every element in the array) = 0.</p>
+</div>
+<div class="paragraph">
+<p>4)While going through each Integer in the array if currentSum &#8656; 0, then set the value of currentSum = 0 and check if maximumSum &lt; currentSum, then maximumSum = currentSum.</p>
+</div>
+<div class="paragraph">
+<p>5)maximumSum will be the largest sum.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_runtime_complexity">Runtime Complexity</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Worst case runtime complexity is O(n) since maximum sum is found by going through the array in 1 pass.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_submitted_code">Submitted code</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">public class Solution
+{
+    public int maxSubArray(int[] A)
+    {
+        if(allNegative(A))
+        {
+            return getMaxAllNegative(A);
+        }
+
+        if(allPositive(A))
+        {
+            return getMaxAllPositive(A);
+        }
+
+        int currentSum = 0;
+        int maximumSum = 0;
+        for(int i = 0; i &lt; A.length; i++)
+        {
+            currentSum = currentSum+A[i];
+            if(currentSum &lt; 0)
+            {
+                currentSum = 0;
+            }
+            if(maximumSum &lt; currentSum)
+            {
+                maximumSum = currentSum;
+            }
+        }
+        return maximumSum;
+    }
+
+    /*
+    Returns true if array contains all negative numbers
+    */
+    private boolean allNegative(int[] A)
+    {
+        for(int i = 0; i &lt; A.length; i++)
+        {
+            if(A[i] &gt;= 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+    Returns the greatest of all negative integers
+    */
+    private int getMaxAllNegative(int[] A)
+    {
+        int max = A[0];
+        for(int i: A)
+        {
+            if(i &gt; max)
+            {
+                max = i;
+            }
+        }
+        return max;
+    }
+
+    /*
+    Returns true if array contains all positive numbers
+    */
+    private boolean allPositive(int[] A)
+    {
+        for(int i = 0; i &lt; A.length; i++)
+        {
+            if(A[i] &lt; 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+    Returns the sum of all integers in teh array as the max sum subarray
+    */
+    private int getMaxAllPositive(int[] A)
+    {
+        int sum = 0;
+        for(int i: A)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="" style="background-image: url(https://avatars.githubusercontent.com/u/3117604?v=3)"><span class="hidden">'s Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href=""></a></h4>
+
+                    <p>Read <a href="">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Maximum%20Subarray&amp;url=https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://deekshasharma.github.io/2015/04/10/Maximum-Subarray.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="https://deekshasharma.github.io">Code and only Code!!</a> &copy; 2015</section>
+        <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();      
+      </script>
+
+    <script type="text/javascript" src="//deekshasharma.github.io/themes/Casper/assets/js/jquery.fitvids.js?v=1.0.0"></script>
+    <script type="text/javascript" src="//deekshasharma.github.io/themes/Casper/assets/js/index.js?v=1.0.0"></script>
+
+</body>
+</html>
